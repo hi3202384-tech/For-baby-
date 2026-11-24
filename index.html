@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baby & Ko Ko </title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+ margin:0;
+ background:#f4e8d8;
+ color:#70513b;
+ font-family:Georgia,serif;
+ text-align:center;
+ overflow-x:hidden;
+}
+
+header{padding:55px 15px 25px}
+
+h1{
+ font-size:45px;
+ animation:fade 2s infinite alternate;
+}
+
+h2{color:#8a674d}
+
+section{
+ background:#fff9ef;
+ margin:25px auto;
+ padding:25px 18px;
+ width:90%;
+ max-width:550px;
+ border-radius:25px;
+ box-shadow:0 5px 25px #8b6a4a30;
+}
+
+button{
+ background:#806047;
+ color:white;
+ border:0;
+ padding:13px 23px;
+ border-radius:30px;
+ cursor:pointer;
+ margin:8px;
+}
+
+.daisy{
+ font-size:35px;
+ animation:swing 3s infinite;
+}
+
+.photos{
+ display:flex;
+ flex-wrap:wrap;
+ justify-content:center;
+ gap:12px;
+}
+
+.photos img{
+ width:100%;
+ max-width:145px;
+ height:175px;
+ object-fit:cover;
+ border-radius:15px;
+ border:4px solid #ead8c3;
+}
+
+.letter{
+ display:none;
+ line-height:2;
+ padding:15px;
+ background:#f5eadb;
+ border-radius:15px;
+ margin-top:15px;
+}
+
+.flower{
+ position:fixed;
+ top:-40px;
+ pointer-events:none;
+ animation:fall linear infinite;
+ z-index:5;
+}
+
+@keyframes fall{
+ to{transform:translateY(110vh) rotate(360deg)}
+}
+
+@keyframes fade{
+ from{opacity:.5}
+ to{opacity:1}
+}
+
+@keyframes swing{
+ 50%{transform:rotate(10deg)}
+}
+
+footer{padding:30px}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="daisy">  </div>
+
+<h1>Baby & Ko Ko</h1>
+
+<p>Our Little Love Story </p>
+
+</header>
+
+<section>
+<h2> Our Anniversary </h2>
+
+<h3>1 August 2026</h3>
+
+<div id="counter">Loading...</div>
+</section>
+
+<section>
+<h2> Our Memories</h2>
+
+<div class="photos">
+
+<img src="photo1.jpg" alt="Memory 1">
+
+<img src="photo2.jpg" alt="Memory 2">
+
+<img src="photo3.jpg" alt="Memory 3">
+
+</div>
+</section>
+
+<section>
+<h2> Our Song</h2>
+
+<p>A little song for us </p>
+
+<audio controls loop>
+<source src="song.mp3" type="audio/mpeg">
+</audio>
+</section>
+
+<section>
+<h2> A Letter For Baby</h2>
+
+<button onclick="openLetter()">
+Open My Letter
+</button>
+
+<div class="letter" id="letter">
+
+<h3>Dear Baby </h3>
+
+<p>
+ဒီနေရာမှာ ကိုယ်ပြောချင်တဲ့
+စိတ်ကြိုက်စာတွေ ရေးနိုင်တယ်။
+</p>
+
+<p>
+Thank you for being part of my life.
+I love you. 
+</p>
+
+<h3>With Love, Ko Ko </h3>
+
+</div>
+</section>
+
+<section>
+<h2> A Little Surprise</h2>
+
+<button onclick="surprise()">
+Click Me 
+</button>
+
+<p id="surprise"></p>
+</section>
+
+<footer>
+ Forever & Always 
+<br><br>
+Baby & Ko Ko
+</footer>
+
+<script>
+
+// Anniversary Counter
+const anniversary = new Date(2026,7,1);
+
+function updateCounter(){
+
+let now = new Date();
+
+let diff = now-anniversary;
+
+let days = Math.floor(diff/86400000);
+
+if(days>=0){
+document.getElementById("counter").innerHTML =
+days+" Days Together ";
+}else{
+document.getElementById("counter").innerHTML =
+"Counting down to our special day ";
+}
+
+}
+
+updateCounter();
+setInterval(updateCounter,1000);
+
+// Love Letter
+function openLetter(){
+let letter=document.getElementById("letter");
+
+letter.style.display =
+letter.style.display==="block"?"none":"block";
+}
+
+// Surprise
+function surprise(){
+document.getElementById("surprise").innerHTML=
+"Baby, You Are My Favorite Person. ";
+}
+
+// Falling Flowers
+let flowers=["","","",""];
+
+setInterval(()=>{
+
+let f=document.createElement("div");
+
+f.className="flower";
+
+f.innerHTML=flowers[
+Math.floor(Math.random()*flowers.length)
+];
+
+f.style.left=Math.random()*100+"vw";
+
+f.style.animationDuration=
+(5+Math.random()*5)+"s";
+
+document.body.appendChild(f);
+
+setTimeout(()=>f.remove(),10000);
+
+},500);
+
+</script>
+
+</body>
+</html>
